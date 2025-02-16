@@ -12,19 +12,18 @@
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
+      "src": "^/static/(.*)",
       "dest": "/static/$1"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
+      "src": "^/(.*\\.(svg|ico|json|txt|png|jpg|jpeg|gif))",
+      "dest": "/$1"
     },
     {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
+      "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
+      "src": "^/(.*)",
       "dest": "/index.html"
     }
   ]
