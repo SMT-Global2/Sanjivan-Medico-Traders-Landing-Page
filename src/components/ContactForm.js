@@ -29,7 +29,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    emailjs.init("HJtRQ2V962XvkRpZ2");
+    emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -48,8 +48,8 @@ const ContactForm = () => {
 
     try {
       const response = await emailjs.send(
-        "service_58yc9fr",
-        "template_dy4sur9",
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           to_email: "smt.noobacker.client002@gmail.com",
           from_name: formData.name,
