@@ -1,55 +1,81 @@
-import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Box, Typography, Paper, useTheme, alpha } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com';
+import React, { useState, useEffect } from "react";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Box,
+  Typography,
+  Paper,
+  useTheme,
+  alpha,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
 
 const MotionButton = motion(Button);
 
 const ContactForm = () => {
   const theme = useTheme();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    city: '',
-    purpose: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    purpose: "",
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    emailjs.init("HJtRQ2V962XvkRpZ2");
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
+    const now = new Date();
+    const options = { weekday: "long" };
+    const formattedDate = now.toLocaleDateString("en-IN");
+    const formattedTime = now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    const formattedDay = now.toLocaleDateString("en-IN", options);
+
     try {
-      await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+      const response = await emailjs.send(
+        "service_58yc9fr",
+        "template_dy4sur9",
         {
-          to_email: 'harshalpimpalshwnde@gmail.com',
+          to_email: "smt.noobacker.client002@gmail.com",
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
           city: formData.city,
           purpose: formData.purpose,
-          message: formData.message
-        },
-        'YOUR_USER_ID'
+          message: formData.message,
+          received_time: formattedTime,
+          received_date: formattedDate,
+          received_day: formattedDay,
+        }
       );
-      
-      alert('Message sent successfully!');
+
+      alert("Message sent successfully!");
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        city: '',
-        purpose: '',
-        message: ''
+        name: "",
+        email: "",
+        phone: "",
+        city: "",
+        purpose: "",
+        message: "",
       });
     } catch (error) {
-      alert('Failed to send message. Please try again.');
+      console.error("EmailJS Error:", error);
+      alert(`Failed to send message: ${error.message || "Please try again."}`);
     } finally {
       setLoading(false);
     }
@@ -58,28 +84,31 @@ const ContactForm = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   return (
-    <Paper 
-      elevation={3} 
-      sx={{ 
+    <Paper
+      elevation={3}
+      sx={{
         p: 4,
-        background: `linear-gradient(135deg, ${alpha(theme.palette.background.paper, 0.9)} 0%, ${alpha(theme.palette.background.paper, 0.95)} 100%)`,
-        backdropFilter: 'blur(10px)',
+        background: `linear-gradient(135deg, ${alpha(
+          theme.palette.background.paper,
+          0.9
+        )} 0%, ${alpha(theme.palette.background.paper, 0.95)} 100%)`,
+        backdropFilter: "blur(10px)",
         borderRadius: 2,
       }}
     >
       <Typography variant="h4" gutterBottom color="primary" sx={{ mb: 3 }}>
         Submit Enquiry
       </Typography>
-      <Box 
-        component="form" 
+      <Box
+        component="form"
         onSubmit={handleSubmit}
         sx={{
-          '& .MuiTextField-root': {
+          "& .MuiTextField-root": {
             mb: 2,
           },
         }}
@@ -93,8 +122,8 @@ const ContactForm = () => {
           onChange={handleChange}
           variant="outlined"
           sx={{
-            '& .MuiOutlinedInput-root': {
-              '&:hover fieldset': {
+            "& .MuiOutlinedInput-root": {
+              "&:hover fieldset": {
                 borderColor: theme.palette.primary.main,
               },
             },
@@ -139,7 +168,9 @@ const ContactForm = () => {
           sx={{ mb: 2 }}
         >
           <MenuItem value="General Enquiry">General Enquiry</MenuItem>
-          <MenuItem value="Medicine / Price enquiry">Medicine / Price Enquiry</MenuItem>
+          <MenuItem value="Medicine / Price enquiry">
+            Medicine / Price Enquiry
+          </MenuItem>
           <MenuItem value="Distribution Enquiry">Distribution Enquiry</MenuItem>
         </TextField>
         <TextField
@@ -167,12 +198,12 @@ const ContactForm = () => {
           sx={{
             py: 1.5,
             background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.primary.light} 90%)`,
-            '&:hover': {
+            "&:hover": {
               background: `linear-gradient(45deg, ${theme.palette.primary.dark} 30%, ${theme.palette.primary.main} 90%)`,
-            }
+            },
           }}
         >
-          {loading ? 'Sending...' : 'Send Message'}
+          {loading ? "Sending..." : "Send Message"}
         </MotionButton>
       </Box>
     </Paper>
