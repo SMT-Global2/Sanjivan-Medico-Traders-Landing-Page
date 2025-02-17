@@ -26,8 +26,8 @@ const MotionButton = motion(Button);
 
 const Home = () => {
   const theme = useTheme();
-  const contacts = ["+91 94221 37362", "+91 79426 94656", "+91 90280 72888"];
-  const whatsappNumber = "+91 94221 37362";
+  const contacts = ["+91 82379 63258", "+91 93072 38010", "+91 77967 40462", "+91 93092 41746", "+91 90280 72888", "+91 72761 17700", "+91 82638 97097",];
+  const whatsappNumber = "+91 82638 97097";
   const email = "info@sanjivanmedico.in";
   const mapLink = "https://maps.app.goo.gl/cLxxvuZJ2aKKSyJHA";
 
@@ -65,7 +65,7 @@ const Home = () => {
   ];
 
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Hi, I would like to enquire about,");
+    const message = encodeURIComponent("Hi, I would like to enquire about, ");
     window.open(
       `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${message}`
     );
@@ -230,6 +230,11 @@ const Home = () => {
                   to excellence and customer satisfaction has made us a trusted
                   name in the industry.
                 </Typography>
+                <Typography variant="h7" sx={{ mt: 3 }}>
+                  <strong>GST NO.:</strong> 27AFAPS9884D1ZZ <br />
+                  <strong>FOOD Lic. No: </strong> 11518060000345 <br />
+                  <strong>DL.NO.:</strong> 20B-339810, 21B-339811 <br />
+                </Typography>
                 <Typography variant="h6" sx={{ mt: 3 }}>
                   <strong>Owner:</strong> Mr. Sachin Sarda
                 </Typography>
@@ -355,8 +360,12 @@ const Home = () => {
                   <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
                     Visit Us
                   </Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
-                    <LocationOnIcon sx={{ mr: 1, mt: 0.5, color: 'text.secondary' }} />
+                  <Box
+                    sx={{ display: "flex", alignItems: "flex-start", mb: 2 }}
+                  >
+                    <LocationOnIcon
+                      sx={{ mr: 1, mt: 0.5, color: "text.secondary" }}
+                    />
                     <Typography variant="body1" color="text.secondary">
                       Medicine Complex, Opposite to Anuja Hotel, Ekori Ward,
                       Chandrapur, Maharashtra, India - 442402
