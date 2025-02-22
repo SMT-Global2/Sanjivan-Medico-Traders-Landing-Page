@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import DescriptionIcon from "@mui/icons-material/Description";
-import PeopleIcon from "@mui/icons-material/People";
 import { motion } from "framer-motion";
 
 const MotionCard = motion(Card);
@@ -42,16 +41,6 @@ const Services = () => {
       link: "http://invoice.sanjivanmedicotraders.in",
       delay: 0.4,
       bgImage: "/invoice-bg.jpg",
-    },
-    {
-      title: "Client Management",
-      icon: (
-        <PeopleIcon sx={{ fontSize: 60, color: theme.palette.primary.main }} />
-      ),
-      description: "Maintain and organize client data.",
-      link: "http://clients.sanjivanmedicotraders.in",
-      delay: 0.6,
-      bgImage: "/client-bg.jpg",
     },
   ];
 
@@ -94,7 +83,8 @@ const Services = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        
+<Grid container spacing={4} justifyContent="center">
           {services.map((service, index) => (
             <Grid item xs={12} md={4} key={index}>
               <MotionCard
