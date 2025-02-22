@@ -93,6 +93,7 @@ const ContactForm = () => {
       elevation={3}
       sx={{
         p: 4,
+        minHeight: "700px",
         background: `linear-gradient(135deg, ${alpha(
           theme.palette.background.paper,
           0.9
